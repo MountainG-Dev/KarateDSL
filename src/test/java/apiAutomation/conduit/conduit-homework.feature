@@ -8,7 +8,7 @@ Feature: Home Work
       * url apiURLConduit
       * def timeValidator = read("classpath:apiAutomation/helpers/timeValidator.js")
 
-    @debug
+    @ignore
     Scenario: Favorite articles
 
     # Step 1: Get articles of the global feed
@@ -31,6 +31,7 @@ Feature: Home Work
       * print response
 
     # Step 4: Verify response schema
+      # CUANDO EL RESPONSE CONTIENE UN SOLO OBJETO SE COMPARA DIRECTAMENTE
       And match response.article ==
       """
           {
@@ -59,15 +60,44 @@ Feature: Home Work
       * match response.favoritesCount == initialCount + 1
 
     # Step 6: Get all favorite articles
+      Given path "articles"
+      And params {favorited:Karate30, limit:10 ,offset:0}
+      When method GET
+      Then status 200
+      * print response
 
     # Step 7: Verify response schema
+      # MATCH EACH SE UTILIZA CUANDO EL RESPONSE CONTIENE VARIOS OBJETOS CON EL MISMO ESQUEMA
+      And match each response.articles ==
+      """
+          {
+            "slug": "#string",
+            "title": "#string",
+            "description": "#string",
+            "body": "#string",
+            "tagList": "#array",
+            "createdAt": "#? timeValidator(_)",
+            "updatedAt": "#? timeValidator(_)",
+            "favorited": "#boolean",
+            "favoritesCount": "#number",
+            "author": {
+              "username": "#string",
+              "bio": "##string",
+              "image": "#string",
+              "following": "#boolean"
+            }
+          }
+      """
 
     # Step 8: Verify that slug ID from Step 2 exist in one of the favorite articles
+   * match response.articles[*].slug contains slugVAR
 
-  @ignore
+
+  @tag2
     Scenario: Comment articles
 
     # Step 1: Get articles of the global feed
+
 
     # Step 2: Get the slug ID for the first article, save it to variable
 
