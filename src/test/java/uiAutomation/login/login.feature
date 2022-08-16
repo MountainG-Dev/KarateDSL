@@ -1,3 +1,4 @@
+@parallel=false
 Feature: Login UI Test
   Esta es la prueba de automatización GUI
 

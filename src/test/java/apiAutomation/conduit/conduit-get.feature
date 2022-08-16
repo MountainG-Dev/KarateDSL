@@ -42,7 +42,8 @@ Feature: GET API Test Conduit
     And match response.articlesCount != 1
     And match response == {"articles": "#array", "articlesCount": 3}
     And match response.articles[0].createdAt contains "2021"
-    And match response.articles[*].favoritesCount contains 1473
+    * def favoritesVAR = response.articles[0].favoritesCount
+    And match response.articles[*].favoritesCount contains favoritesVAR
     And match each response..favoritesCount == "#number"
     And match response..bio contains null
     And match each response..following == false
@@ -74,6 +75,23 @@ Feature: GET API Test Conduit
         }
     """
 
+  @tag4
+  Scenario: Test Case 04 / Condición lógica
+    Given path "articles"
+    And params {limit:10, offset:0}
+    When method GET
+    Then status 200
+    * def favoritesCount = response.articles[0].favoritesCount
+    * def article = response.articles[0]
+
+#    * if (favoritesCount == 0) karate.call("classpath:apiAutomation/helpers/add-likes.feature", article)
+    * def result = favoritesCount == 0 ? karate.call("classpath:apiAutomation/helpers/add-likes.feature", article).likesCount : favoritesCount
+
+    Given path "articles"
+    And params {limit:10, offset:0}
+    When method GET
+    Then status 200
+    And match response.articles[0].favoritesCount == result
 
 
 

@@ -5,7 +5,7 @@ Feature: Expresiones incrustadas y multilinea
   # IMPORTANTE CAMBIAR VARIABLE GLOBAL DE AMBIENTE CONDUIT
   # IMPORTANTE CAMBIAR PATH DE VALIDADOR DE DATA GENERATOR
   Background: Precondiciones
-    * def dataGenerator = Java.type("karateAPIAutomation.helpers.DataGenerator")
+    * def dataGenerator = Java.type("apiAutomation.helpers.DataGenerator")
     * url apiURLConduit
     * def randomEmail = dataGenerator.getRandomEmail()
     * def randomUsername = dataGenerator.getRandomUsername()

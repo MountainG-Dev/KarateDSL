@@ -10,7 +10,7 @@ class ParallelUITest {
 
     @Test
     void testParallel() {
-        Results results = Runner.path("classpath:uiAutomation/login/login.feature")
+        Results results = Runner.path("classpath:uiAutomation/login/")
                 //.outputCucumberJson(true)
                 .parallel(10);
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
