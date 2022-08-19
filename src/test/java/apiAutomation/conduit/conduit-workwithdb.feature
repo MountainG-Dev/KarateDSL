@@ -6,11 +6,11 @@ Feature: DB API Test Conduit
   Background: Conectar a BD
     * def dbHandler = Java.type("apiAutomation.helpers.DbHandler")
 
-  @ignore
+  @tag1
   Scenario: Test Case 01 / Poblar base de datos con nueva promoción
     * eval dbHandler.addNewPromotionWithName("2023 Spring Promotion")
 
-  @debug
+  @tag2
   Scenario: Test Case 02 / Obtener fechas de la promoción
     * def dates = dbHandler.getStartAndExpiredDateFromPromotions("2023 Spring Promotion")
     * print dates.startDate

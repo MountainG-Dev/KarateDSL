@@ -14,7 +14,7 @@ Feature: Login UI Test
     Then match driver.title == "Swag Labs"
     And match driver.url == "https://www.saucedemo.com/inventory.html"
 
-  @tag2
+  @debug
   Scenario: Test Case 02 / Login con credenciales validas en chrome
     * configure driver = {type: "chrome"}
     Given driver "https://www.saucedemo.com/"
@@ -25,7 +25,7 @@ Feature: Login UI Test
     Then match driver.title == "Swag Labs"
     And match driver.url == "https://www.saucedemo.com/inventory.html"
 
-  @tag3
+  @debug
   Scenario: Test Case 03 / Login con credenciales validas en chrome con headless
     * configure driver = {type: "chrome", headless: true}
     Given driver "https://www.saucedemo.com/"
@@ -35,7 +35,7 @@ Feature: Login UI Test
     Then match driver.title == "Swag Labs"
     And match driver.url == "https://www.saucedemo.com/inventory.html"
 
-  @tag4
+  @debug
   Scenario: Test Case 04 / Login con credenciales validas en chrome con headless y webdriver
     * def ChromeSession = { capabilities: { browserName: 'chrome', alwaysMatch: { "goog:chromeOptions": { args: [ "-headless" ] } } } }
     * configure driver = {type: "chromedriver", executable: "src/test/drivers/chromedriver.exe", webDriverSession:"#(ChromeSession)" }
