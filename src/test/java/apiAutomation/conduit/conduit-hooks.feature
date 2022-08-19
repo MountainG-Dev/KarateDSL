@@ -1,4 +1,4 @@
-@debug
+@conduit-hooks
 Feature: Hooks
 
   Background: hooks
