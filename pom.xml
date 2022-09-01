@@ -136,8 +136,8 @@
                 <artifactId>gatling-maven-plugin</artifactId>
                 <version>${gatling.plugin.version}</version>
                 <configuration>
-                    <simulationsFolder>src/test/java/apiAutomation/restful/performance/simulations</simulationsFolder>
-                    <configFolder>src/test/java/apiAutomation/restful/performance/data</configFolder>
+                    <simulationsFolder>src/test/java/perfAutomation/simulations</simulationsFolder>
+                    <configFolder>src/test/java/perfAutomation/data</configFolder>
                 </configuration>
             </plugin>
 

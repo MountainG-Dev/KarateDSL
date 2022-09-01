@@ -3,9 +3,9 @@ function fn() {
   karate.log('karate.env system property was:', env);
   if (!env) {
 /* IMPORTANTE DESCOMENTAR SOLO EL AMBIENTE A UTILIZAR PARA DEBUG */
-//    env = 'local'; // a custom 'intelligent' default
+    env = 'local'; // a custom 'intelligent' default
 //    env = 'conduit'; // a custom 'intelligent' default
-    env = 'restful'; // a custom 'intelligent' default
+//    env = 'restful'; // a custom 'intelligent' default
   }
   var config = {
     env: env,
