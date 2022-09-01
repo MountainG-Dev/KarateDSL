@@ -14,7 +14,7 @@ Feature: Login UI Test
     Then match driver.title == "Swag Labs"
     And match driver.url == "https://www.saucedemo.com/inventory.html"
 
-  @debug
+  @tag2
   Scenario: Test Case 02 / Login con credenciales validas en chrome
     * configure driver = {type: "chrome"}
     Given driver "https://www.saucedemo.com/"
@@ -25,7 +25,7 @@ Feature: Login UI Test
     Then match driver.title == "Swag Labs"
     And match driver.url == "https://www.saucedemo.com/inventory.html"
 
-  @debug
+  @tag3
   Scenario: Test Case 03 / Login con credenciales validas en chrome con headless
     * configure driver = {type: "chrome", headless: true}
     Given driver "https://www.saucedemo.com/"
@@ -57,7 +57,7 @@ Feature: Login UI Test
     Then match driver.title == "Swag Labs"
     And match driver.url == "https://www.saucedemo.com/inventory.html"
 
-  @tag6
+  @debug
   Scenario: Test Case 06 / Login con credenciales validas en firefox con headless
     * def FirefoxSession = { capabilities: { browserName: 'firefox', alwaysMatch: { "moz:firefoxOptions": { args: ["-headless"] } } } }
     * configure driver = {type: "geckodriver", executable: "src/test/drivers/geckodriver.exe", webDriverSession:"#(FirefoxSession)" }
@@ -68,4 +68,30 @@ Feature: Login UI Test
     Then match driver.title == "Swag Labs"
     And match driver.url == "https://www.saucedemo.com/inventory.html"
     * delay(2000)
+    * screenshot()
+
+  @tag7
+  Scenario: Test Case 07 / Login con credenciales validas en docker chrome headless
+    * configure driverTarget = { docker: 'justinribeiro/chrome-headless', showDriverLog: false }
+    Given driver "https://www.saucedemo.com/"
+    And input("//input[@id='user-name']", "standard_user")
+    And input("//input[@id='password']", "secret_sauce")
+    * screenshot()
+    When click("//input[@id='login-button']")
+    Then match driver.title == "Swag Labs"
+    And match driver.url == "https://www.saucedemo.com/inventory.html"
+    And click("//img[@alt='Sauce Labs Backpack']")
+    * screenshot()
+
+  @tag8
+  Scenario: Test Case 08 / Login con credenciales validas en docker chrome full con video
+    * configure driverTarget = { docker: 'ptrthomas/karate-chrome', showDriverLog: false}
+    Given driver "https://www.saucedemo.com/"
+    And input("//input[@id='user-name']", "standard_user")
+    And input("//input[@id='password']", "secret_sauce")
+    * screenshot()
+    When click("//input[@id='login-button']")
+    Then match driver.title == "Swag Labs"
+    And match driver.url == "https://www.saucedemo.com/inventory.html"
+    And click("//img[@alt='Sauce Labs Backpack']")
     * screenshot()

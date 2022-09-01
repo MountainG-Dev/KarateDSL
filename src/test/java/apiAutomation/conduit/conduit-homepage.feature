@@ -112,10 +112,10 @@ Feature: GET API Test Conduit
 
     Given path "articles"
     And params {limit:10, offset:0}
-    And retry until response.articles[0].favoritesCount == 3582
+    And retry until response.articles[0].favoritesCount == 3641
     When method GET
     Then status 200
-    And match response.articles[0].favoritesCount == 3582
+    And match response.articles[0].favoritesCount == 3641
 
   @tag6
   Scenario: Test Case 06 / llamada detenida

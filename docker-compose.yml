@@ -8,6 +8,7 @@ services:
       volumes:
         - ./target:/usr/src/app/target
         - ~/m2:/root/.m2
+#      command: mvn test "-Dkarate.options=--tags @debug" "-Dtest=uiAutomation/login/LoginRunTest"
       command: mvn test "-Dtest=apiAutomation/ParallelAPITest"
 #      command: mvn test "-Dkarate.options=--tags @debug" "-Dkarate.env=conduit" "-Dtest=uiAutomation/login/LoginRunTest"
 #      command: mvn test "-Dkarate.options=--tags @debug" "-Dkarate.env=conduit" "-Dtest=apiAutomation/conduit/ConduitRunTest"
