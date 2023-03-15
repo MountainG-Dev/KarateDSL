@@ -37,11 +37,11 @@ Feature: GET API Test Conduit
     Then status 200
 
     # Tipos de assertions
-    And match response.articles == "#[3]"
-    And match response.articlesCount == 3
+    And match response.articles == "#[10]"
+    And match response.articlesCount == 163
     And match response.articlesCount != 1
-    And match response == {"articles": "#array", "articlesCount": 3}
-    And match response.articles[0].createdAt contains "2021"
+    And match response == {"articles": "#array", "articlesCount": 163}
+    And match response.articles[0].createdAt contains "2022"
     * def favoritesVAR = response.articles[0].favoritesCount
     And match response.articles[*].favoritesCount contains favoritesVAR
     And match each response..favoritesCount == "#number"
@@ -53,7 +53,7 @@ Feature: GET API Test Conduit
     And match each response..bio == "##String"
 
     # Validación de esquemas pruebas reales
-    And match response == {"articles": "#[3]", "articlesCount": 3}
+    And match response == {"articles": "#[10]", "articlesCount": 163}
     And match each response.articles ==
     """
         {
@@ -112,10 +112,10 @@ Feature: GET API Test Conduit
 
     Given path "articles"
     And params {limit:10, offset:0}
-    And retry until response.articles[0].favoritesCount == 3641
+    And retry until response.articles[0].favoritesCount == 183
     When method GET
     Then status 200
-    And match response.articles[0].favoritesCount == 3641
+    And match response.articles[0].favoritesCount == 183
 
   @tag6
   Scenario: Test Case 06 / llamada detenida

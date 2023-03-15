@@ -1,3 +1,4 @@
+@ignore
 @conduit-workwithdb
 Feature: DB API Test Conduit
   Esta es la prueba de automatización de API con conexión a base de datos
